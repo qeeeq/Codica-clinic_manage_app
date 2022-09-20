@@ -1,16 +1,14 @@
 ActiveAdmin.register Consultation do
-  # permit_params :type, :phone, :password, :password_confirmation
+  permit_params :patient_id, :doctor_id
 
-  # index do
-    # selectable_column
-    # id_column
-    # column :phone
-    # column :type
-    # column :current_sign_in_at
-    # column :sign_in_count
-    # column :created_at
-    # actions
-  # end
+  index do
+    selectable_column
+    id_column
+    column :doctor_id
+    column :patient_id
+    column :created_at
+    actions
+  end
 
   # filter :phone
   # filter :current_sign_in_at
@@ -38,6 +36,7 @@ ActiveAdmin.register Consultation do
   form do |f|
     f.inputs "Select doctor" do
       f.input :doctor, :as => :select, :collection => Doctor.all.collect {|doctor| [doctor.phone, doctor.id] }
+      f.input :patient, :as => :select, :collection => Patient.all.collect {|patient| [patient.phone, patient.id] }
     end
     f.actions
   end

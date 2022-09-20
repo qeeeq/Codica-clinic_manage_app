@@ -40,13 +40,14 @@ class Ability
 
     if user.doctor?
       can :read, ActiveAdmin::Page, name: "Dashboard"
-      can :manage, Doctor, id: user.id
-      can :manage, Consultation, doctor_id: user.id
+      can :read, Doctor, id: user.id
+      can :read, Consultation, doctor_id: user.id
     end
 
     if user.patient?
       can :read, ActiveAdmin::Page, name: "Dashboard"
       can :read, Patient, id: user.id
+      can :read, Doctor
       can :manage, Consultation, patient_id: user.id
     end
   end
