@@ -1,4 +1,4 @@
-ActiveAdmin.register Doctor , namespace: false do
+ActiveAdmin.register Patient , namespace: false do
   permit_params :type, :phone, :password, :password_confirmation
 
   index do

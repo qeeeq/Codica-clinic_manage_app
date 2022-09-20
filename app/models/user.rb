@@ -6,6 +6,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
 
+  def admin?
+    is_a?(Admin)
+  end
+
+  def doctor?
+    is_a?(Doctor)
+  end
+
+  def patient?
+    is_a?(Patient)
+  end
+
   def email_required?
     false
   end
