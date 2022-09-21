@@ -1,5 +1,4 @@
 class DoctorCategory < ApplicationRecord
-  has_many :doctors
-
-  validates :name, presence: true
+  belongs_to :doctor
+  belongs_to :category
 end

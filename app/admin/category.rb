@@ -1,11 +1,10 @@
-ActiveAdmin.register DoctorCategory , namespace: false do
+ActiveAdmin.register Category, namespace: false do
   permit_params :name
 
   index do
     selectable_column
     id_column
     column :name
-    # column :doctors
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
@@ -20,7 +19,6 @@ ActiveAdmin.register DoctorCategory , namespace: false do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :doctors, :as => :select, :collection => Doctor.all.collect {|doctor| [doctor.phone, doctor.id] }
     end
     f.actions
   end

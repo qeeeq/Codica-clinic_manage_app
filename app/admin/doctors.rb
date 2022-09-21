@@ -1,15 +1,24 @@
 ActiveAdmin.register Doctor , namespace: false do
-  permit_params :type, :phone, :password, :password_confirmation
+  permit_params :type, :phone, :password, :password_confirmation, category_ids: []
 
   index do
     selectable_column
     id_column
     column :phone
-    column :type
+    column :categories
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
     actions
+  end
+
+  show do
+    attributes_table do
+      row :phone
+      row :email
+      row :categories
+    end
+    active_admin_comments
   end
 
   filter :phone
@@ -20,8 +29,11 @@ ActiveAdmin.register Doctor , namespace: false do
   form do |f|
     f.inputs do
       f.input :phone
-      f.input :password
-      f.input :password_confirmation
+      f.input :categories, :as => :check_boxes
+      if f.object.new_record?
+        f.input :password
+        f.input :password_confirmation
+      end
     end
     f.actions
   end
