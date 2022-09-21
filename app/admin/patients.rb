@@ -15,7 +15,6 @@ ActiveAdmin.register Patient , namespace: false do
     attributes_table do
       row :phone
       row :email
-      # row :categories
     end
     active_admin_comments
   end

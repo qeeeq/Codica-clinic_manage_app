@@ -30,6 +30,12 @@ ActiveAdmin.register Doctor , namespace: false do
     f.inputs do
       f.input :phone
       f.input :categories, :as => :check_boxes
+      # f.inputs do
+      #   f.has_many :consultations, heading: 'Consultations',
+      #                           allow_destroy: true,
+      #                           new_record: false do |a|
+      #     a.input :note
+      #   end
       if f.object.new_record?
         f.input :password
         f.input :password_confirmation

@@ -4,10 +4,21 @@ ActiveAdmin.register Consultation do
   index do
     selectable_column
     id_column
-    column :doctor_id
+    column :note
+    column :doctor
     column :patient_id
     column :created_at
+    column :active
     actions
+  end
+
+  show do
+    attributes_table do
+      row :doctor_id
+      row :note
+      row :active
+    end
+    active_admin_comments
   end
 
   # filter :phone
@@ -36,9 +47,8 @@ ActiveAdmin.register Consultation do
   form do |f|
     f.inputs "Select doctor" do
       f.input :doctor, :as => :select, :collection => Doctor.all.collect {|doctor| [doctor.phone, doctor.id] }
-      f.input :patient, :as => :select, :collection => Patient.all.collect {|patient| [patient.phone, patient.id] }
+      f.input :patient, :input_html => { :value => current_user.id }, as: :hidden
     end
     f.actions
   end
-
 end

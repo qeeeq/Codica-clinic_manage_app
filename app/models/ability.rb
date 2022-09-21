@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
     # Define abilities for the user here. For example:
     #
-      # return unless user.present?
+    # return unless user.present?
     #   can :read, :all
     #   return unless user.admin?
     #   can :manage, :all
@@ -40,15 +40,18 @@ class Ability
 
     if user.doctor?
       can :read, ActiveAdmin::Page, name: "Dashboard"
+      # can :read, Patient, id: user.id
       can :read, Doctor, id: user.id
       can :read, Consultation, doctor_id: user.id
+      can :update, Consultation, doctor_id: user.id, active: true
+      can :read, Patient, consultations: { doctor: { id: user.id }, active: true }
     end
 
     if user.patient?
       can :read, ActiveAdmin::Page, name: "Dashboard"
-      can :read, Patient, id: user.id
       can :read, Doctor
-      can :manage, Consultation, patient_id: user.id
+      can :read, Patient, id: user.id
+      can [:read, :create], Consultation, patient_id: user.id
     end
   end
 end
