@@ -1,6 +1,7 @@
 ActiveAdmin.register Admin , namespace: false do
   permit_params :type, :phone, :password, :password_confirmation
 
+  # menu label: "List of admins"
   index do
     selectable_column
     id_column

@@ -3,11 +3,13 @@ ActiveAdmin.register Patient , namespace: false do
 
   index do
     selectable_column
-    id_column
     column :phone
-    column :current_sign_in_at
-    column :sign_in_count
-    column :created_at
+    if current_user.admin?
+      id_column
+      column :current_sign_in_at
+      column :sign_in_count
+      column :created_at
+    end
     actions
   end
 
@@ -33,3 +35,5 @@ ActiveAdmin.register Patient , namespace: false do
     f.actions
   end
 end
+
+

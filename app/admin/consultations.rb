@@ -1,5 +1,5 @@
 ActiveAdmin.register Consultation do
-  permit_params :patient_id, :doctor_id
+  permit_params :note, :patient_id, :doctor_id
 
   index do
     selectable_column
@@ -8,7 +8,7 @@ ActiveAdmin.register Consultation do
     column :doctor
     column :patient_id
     column :created_at
-    column :active
+    column :closed
     actions
   end
 
@@ -16,7 +16,7 @@ ActiveAdmin.register Consultation do
     attributes_table do
       row :doctor_id
       row :note
-      row :active
+      row :closed
     end
     active_admin_comments
   end
@@ -46,7 +46,14 @@ ActiveAdmin.register Consultation do
 
   form do |f|
     f.inputs "Select doctor" do
-      f.input :doctor, :as => :select, :collection => Doctor.all.collect {|doctor| [doctor.phone, doctor.id] }
+      # f.input :doctor, :as => :select, :collection => Doctor.all.collect {|doctor| [doctor.phone, doctor.id] }
+      # f.input :doctor, :as => :select, :collection => Doctor.all.collect {|doctor| [doctor.phone, doctor.id] }
+      if current_user.doctor?
+        f.input :note
+      end
+      if current_user.patient?
+        f.input :doctor, :as => :select, :collection => Doctor.all.collect {|doctor| [doctor.phone, doctor.id] }
+      end
       f.input :patient, :input_html => { :value => current_user.id }, as: :hidden
     end
     f.actions
