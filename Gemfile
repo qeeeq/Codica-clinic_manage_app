@@ -53,6 +53,8 @@ gem 'devise'
 gem 'sass-rails'
 gem 'awesome_print'
 gem 'cancancan'
+gem 'active_admin_theme'
+gem 'activeadmin_blaze_theme'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

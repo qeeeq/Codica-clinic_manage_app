@@ -1,10 +1,16 @@
 class User < ApplicationRecord
   validates :phone, presence: true
-  
+
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, 
-         :recoverable, :rememberable, :validatable
+  # :confirmable, :lockable, :timeoutable, :trackable, and :omniauthable
+  devise :database_authenticatable,
+         :recoverable, :rememberable, :validatable, :registerable
+
+  before_save :patient_sign_up
+
+  def patient_sign_up
+    self.type ||= 'Patient'
+  end
 
   def admin?
     is_a?(Admin)

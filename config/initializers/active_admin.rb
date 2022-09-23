@@ -16,7 +16,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  config.site_title_image = "https://media.istockphoto.com/vectors/caduceus-vector-id1165451954?k=20&m=1165451954&s=612x612&w=0&h=_XT30FUJJ0i5KGeo7ukbXhX4Gf7GLRW6QDQSWo9wLzk="
 
   # == Default Namespace
   #
@@ -30,7 +30,7 @@ ActiveAdmin.setup do |config|
   # will namespace routes to /hello_world/*
   #
   # To set no namespace by default, use:
-    config.default_namespace = false
+  config.default_namespace = false
   #
   # Default:
   # config.default_namespace = :admin
@@ -82,7 +82,7 @@ ActiveAdmin.setup do |config|
   # because, by default, user gets redirected to Dashboard. If user
   # doesn't have access to Dashboard, he'll end up in a redirect loop.
   # Method provided here should be defined in application_controller.rb.
-  # config.on_unauthorized_access = :access_denied
+  config.on_unauthorized_access = :access_denied
 
   # == Current User
   #

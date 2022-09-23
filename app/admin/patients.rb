@@ -3,14 +3,15 @@ ActiveAdmin.register Patient , namespace: false do
 
   index do
     selectable_column
-    column :phone
+
     if current_user.admin?
       id_column
       column :current_sign_in_at
       column :sign_in_count
       column :created_at
+      actions
     end
-    actions
+    column ("Patient phone") {|patient| patient.phone}
   end
 
   show do

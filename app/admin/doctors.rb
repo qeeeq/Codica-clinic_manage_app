@@ -1,18 +1,23 @@
 ActiveAdmin.register Doctor , namespace: false do
-  permit_params :type, :phone, :password, :password_confirmation, category_ids: []
+  permit_params :doctor_id, :type, :phone, :password, :password_confirmation, category_ids: []
 
   index do
     selectable_column
-    column :phone
-    column :categories
+
     if current_user.admin?
       id_column
       column :current_sign_in_at
       column :sign_in_count
       column :created_at
     end
+    column :phone
+
+    column 'categories' do |doctor|
+      doctor.categories
+    end
     actions
   end
+
 
   show do
     attributes_table do
@@ -32,12 +37,7 @@ ActiveAdmin.register Doctor , namespace: false do
     f.inputs do
       f.input :phone
       f.input :categories, :as => :check_boxes
-      # f.inputs do
-      #   f.has_many :consultations, heading: 'Consultations',
-      #                           allow_destroy: true,
-      #                           new_record: false do |a|
-      #     a.input :note
-      #   end
+      
       if f.object.new_record?
         f.input :password
         f.input :password_confirmation
