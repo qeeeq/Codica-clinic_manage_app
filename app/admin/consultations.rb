@@ -8,30 +8,31 @@ ActiveAdmin.register Consultation do
       column :created_at
     end
 
-    # column 'doctor' do |consultation|
-    #   Doctor.all.consultations.find(consultation.id).phone
-    # end
-
-    # column 'patient' do |consultation|
-    # end
-
+    if current_user.patient?
+      column 'doctor phone' do |consultation|
+        consultation.doctor.phone
+      end
+    end
     column :closed
     actions
   end
 
   show do
     attributes_table do
-      row :doctor_id
+      row 'doctor phone' do |consultation|
+        consultation.doctor.phone
+      end
       row :note
       row :closed
     end
     active_admin_comments
   end
 
-  # filter :phone
-  # filter :current_sign_in_at
-  # filter :sign_in_count
-  # filter :created_at
+  filter :closed, label: "Consultation closed?"
+  filter :current_sign_in_at
+  filter :sign_in_count
+  filter :created_at
+  filter :doctor, collection: -> { Doctor.all.map { |doctor| [doctor.phone, doctor.id] } }
 
   form do |f|
     f.inputs "Select doctor" do

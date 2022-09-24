@@ -3,7 +3,6 @@ ActiveAdmin.register Patient , namespace: false do
 
   index do
     selectable_column
-
     if current_user.admin?
       id_column
       column :current_sign_in_at
