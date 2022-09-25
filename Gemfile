@@ -55,6 +55,7 @@ gem 'awesome_print'
 gem 'cancancan'
 gem 'active_admin_theme'
 gem 'activeadmin_blaze_theme'
+gem 'cloudinary'
 gem 'rails-controller-testing'
 
 group :development, :test do
