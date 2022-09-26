@@ -12,6 +12,10 @@ class User < ApplicationRecord
     self.type ||= 'Patient'
   end
 
+  def name
+    phone
+  end
+
   def admin?
     is_a?(Admin)
   end
