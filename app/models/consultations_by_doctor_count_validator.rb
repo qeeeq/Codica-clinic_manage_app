@@ -1,5 +1,4 @@
 class ConsultationsByDoctorCountValidator < ActiveModel::Validator
-  
   MAX_NUMBER_OF_CONSULTATIONS = 10
 
   def validate(record)

@@ -1,4 +1,4 @@
-ActiveAdmin.register Doctor , namespace: false do
+ActiveAdmin.register Doctor, namespace: false do
   permit_params :doctor_id, :type, :phone, :password, :password_confirmation, category_ids: []
 
   index do
@@ -26,16 +26,11 @@ ActiveAdmin.register Doctor , namespace: false do
     active_admin_comments
   end
 
-  filter :phone
-  filter :current_sign_in_at
-  filter :sign_in_count
-  filter :created_at
-
   form do |f|
     f.inputs do
       f.input :phone
-      f.input :categories, :as => :check_boxes
-      
+      f.input :categories, as: :check_boxes
+
       if f.object.new_record?
         f.input :password
         f.input :password_confirmation

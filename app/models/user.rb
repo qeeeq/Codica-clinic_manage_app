@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-  validates :phone, presence: true, numericality: true, length: { minimum: 9, maximum: 12 }
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable, and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable, :registerable
 
+  validates :phone, presence: true, numericality: true, length: { minimum: 9, maximum: 12 }
+  
   before_save :patient_sign_up
 
   def patient_sign_up

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
+
 ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content title: proc { "Welcome #{current_user.type}" } do
-
     if current_user.admin?
       columns do
         column do
@@ -24,7 +24,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-      if current_user.patient?
+    if current_user.patient?
       columns do
         column do
           panel "Patient info" do
@@ -34,5 +34,5 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
     render partial: 'admin/dashboard/my_cool_form'
-  end # content
+  end
 end

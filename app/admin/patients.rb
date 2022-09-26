@@ -1,4 +1,4 @@
-ActiveAdmin.register Patient , namespace: false do
+ActiveAdmin.register Patient, namespace: false do
   permit_params :type, :phone, :password, :password_confirmation, :avatar
 
   show do
@@ -6,7 +6,6 @@ ActiveAdmin.register Patient , namespace: false do
       row :phone
       row :email
       row "Avatar" do |patient|
-        # image_tag product.image.image_url
         cl_image_tag url_for(patient.avatar)
       end
     end
