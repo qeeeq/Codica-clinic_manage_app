@@ -1,5 +1,5 @@
 ActiveAdmin.register Consultation do
-  permit_params :note, :patient_id, :doctor_id, :closed
+  permit_params :note, :closed, :patient_id, :doctor_id
 
   form do |f|
     if current_user.doctor?
@@ -11,18 +11,19 @@ ActiveAdmin.register Consultation do
 
     if current_user.patient?
       f.inputs 'Select doctor' do
-        f.input :doctor, as: :select,
+        f.input :doctor, as: :select, include_blank: false,
                          collection: Doctor.all.collect { |doctor| ["#{doctor.phone}, (#{doctor.categories.pluck(:name).join(', ')})", doctor.id] }
         f.input :patient_id, input_html: { value: current_user.id }, as: :hidden
+        # include_blank: false
         f.actions
       end
     end
 
     if current_user.admin?
       f.inputs 'Make the changes' do
-        f.input :doctor, as: :select,
+        f.input :doctor, as: :select, include_blank: false,
                          collection: Doctor.all.collect { |doctor| ["#{doctor.phone}, (#{doctor.categories.pluck(:name).join(', ')})", doctor.id] }
-        f.input :patient, as: :select, collection: Patient.all.pluck(:phone, :id)
+        f.input :patient, as: :select, include_blank: false, collection: Patient.all.pluck(:phone, :id)
         f.input :closed
         f.actions
       end
