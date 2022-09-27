@@ -60,16 +60,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_223926) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_categories_on_name", unique: true
+    t.index ["name"], name: "index_categories_on_name"
   end
 
   create_table "consultations", force: :cascade do |t|
     t.bigint "doctor_id"
     t.bigint "patient_id"
+    t.text "note"
     t.boolean "closed", default: false
+    t.boolean "boolean", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "note"
     t.index ["doctor_id"], name: "index_consultations_on_doctor_id"
     t.index ["patient_id"], name: "index_consultations_on_patient_id"
   end
@@ -85,7 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_223926) do
 
   create_table "users", force: :cascade do |t|
     t.string "phone", null: false
-    t.string "type"
+    t.string "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: ""
@@ -93,8 +94,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_223926) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.index ["phone"], name: "index_users_on_phone", unique: true
+    t.index ["phone"], name: "index_users_on_phone"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["type"], name: "index_users_on_type"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

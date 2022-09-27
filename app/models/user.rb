@@ -6,11 +6,7 @@ class User < ApplicationRecord
 
   validates :phone, presence: true, numericality: true, length: { minimum: 9, maximum: 12 }
   
-  before_save :patient_sign_up
-
-  def patient_sign_up
-    self.type ||= 'Patient'
-  end
+  before_save :setup_default_type
 
   def name
     phone
@@ -30,5 +26,11 @@ class User < ApplicationRecord
 
   def email_required?
     false
+  end
+
+  private
+
+  def setup_default_type
+    self.type ||= Patient.name
   end
 end

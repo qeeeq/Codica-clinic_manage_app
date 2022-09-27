@@ -11,7 +11,8 @@ class Ability
     if user.doctor?
       can :read, ActiveAdmin::Page, name: "Dashboard"
       can :read, Doctor, id: user.id
-      can [:read, :update], Consultation, doctor_id: user.id
+      can :read, Consultation, doctor_id: user.id
+      can :update, Consultation, doctor_id: user.id, closed: false
       can :read, Patient, consultations: { doctor: { id: user.id }, closed: false }
     end
 

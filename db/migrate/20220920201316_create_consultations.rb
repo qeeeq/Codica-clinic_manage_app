@@ -3,7 +3,8 @@ class CreateConsultations < ActiveRecord::Migration[7.0]
     create_table :consultations do |t|
       t.references :doctor
       t.references :patient
-      t.boolean :active, default: true
+      t.text :note
+      t.boolean :closed, :boolean, default: false
 
       t.timestamps
     end

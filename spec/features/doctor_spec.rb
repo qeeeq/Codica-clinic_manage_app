@@ -14,22 +14,12 @@ RSpec.feature 'Doctor management', type: :feature do
 
   scenario 'Doctor login' do
     visit "/"
-    fill_in 'Title', with: doctor.phone.to_s
-    fill_in 'Password', with: doctor.password.to_s
+    fill_in 'Title', with: "#{doctor.phone}"
+    fill_in 'Password', with: "#{doctor.password}"
     click_button 'Login'
+    find("a[href='/consultations']").click
+    find("a[href='/consultations/#{non_closed_consultation.id}/edit']").click
+    click_button 'Submit'
 
-    expect(page).to have_text('Welcome Doctor')
-  end
-
-  # scenario 'Doctor login' do
-  #   visit "/"
-  #   fill_in 'Title', with: "#{doctor.phone}"
-  #   fill_in 'Password', with: "#{doctor.password}"
-  #   click_button 'Login'
-  #   find("a[href='/consultations']").click
-
-  #   # expect(page).to have_link(nil, href: "/consultations/#{non_closed_consultation.id}/edit")
-  #   # page.should have_selector(:link_or_button, "/consultations/#{non_closed_consultation.id}/edit")
-  #   expect(page).to have_selector(:link_or_button, "/consultations/#{consultation.id}/edit")
-  # end
+    expect(page).to have_text('Consultation was successfully updated')
 end
