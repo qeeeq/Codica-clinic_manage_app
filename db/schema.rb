@@ -68,7 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_223926) do
     t.bigint "patient_id"
     t.text "note"
     t.boolean "closed", default: false
-    t.boolean "boolean", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["doctor_id"], name: "index_consultations_on_doctor_id"

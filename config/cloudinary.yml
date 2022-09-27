@@ -1,11 +1,11 @@
 development: 
   cloud_name: "dqwalkact"
   api_key: "595324268824583"
-  api_secret: ENV["CLOUDINARY_SECRET"]
+  api_secret: <%= ENV["CLOUDINARY_SECRET"] %>
   secure: true
 
 production:
   cloud_name: "dqwalkact"
   api_key: "595324268824583"
-  api_secret: ENV["CLOUDINARY_SECRET"]
+  api_secret: <%= ENV["CLOUDINARY_SECRET"] %>
   secure: true

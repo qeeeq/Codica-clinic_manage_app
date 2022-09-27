@@ -13,7 +13,7 @@ ActiveAdmin.register Consultation do
       f.inputs 'Select doctor' do
         f.input :doctor, as: :select,
                          collection: Doctor.all.collect { |doctor| ["#{doctor.phone}, (#{doctor.categories.pluck(:name).join(', ')})", doctor.id] }
-        f.input :patient, input_html: { value: current_user.id }, as: :hidden
+        f.input :patient_id, input_html: { value: current_user.id }, as: :hidden
         f.actions
       end
     end

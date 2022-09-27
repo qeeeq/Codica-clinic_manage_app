@@ -4,7 +4,7 @@ class CreateConsultations < ActiveRecord::Migration[7.0]
       t.references :doctor
       t.references :patient
       t.text :note
-      t.boolean :closed, :boolean, default: false
+      t.boolean :closed, default: false
 
       t.timestamps
     end

@@ -5,7 +5,7 @@ class Consultation < ApplicationRecord
   belongs_to :doctor
   belongs_to :patient
 
-  validates :note, length: { minimum: 10, maximum: 100 }, allow_blank: false
+  validates :note, length: { minimum: 10, maximum: 100 }, allow_blank: true
   before_save :try_to_close
 
   private

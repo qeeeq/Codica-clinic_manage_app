@@ -15,6 +15,10 @@ ActiveAdmin.register Patient, namespace: false do
     f.inputs do
       f.input :phone
       f.input :avatar, as: :file
+      if f.object.new_record?
+        f.input :password
+        f.input :password_confirmation
+      end
     end
     f.actions
   end
